@@ -1,0 +1,98 @@
+<style>
+	table {
+		border: 1px solid black;
+		border-collapse: collapse;
+		margin-left: 250px;
+		margin-top: 50px;
+	}
+
+	th,
+	td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+
+	th,
+	td {
+		padding: 5px;
+		text-align: left;
+	}
+</style>
+
+<body>
+
+	<form method="get" novalidate>
+		<input type="text" id="ipAddress" onkeypress="handle(event)" placeholder="IP Address" name="ipAddress" style="width:170px;margin-top:150px;margin-left:425px">
+		<button type="button" id="submitButton" onclick="loadDoc()">Get IP Details</button>
+	</form>
+
+	<p id="content"></p>
+
+	<script>
+		function handle(e) {
+			if (e.keyCode === 13) {
+				e.preventDefault();
+				// alert("Enter was pressed");
+				document.getElementById("submitButton").click();
+			}
+		}
+
+		function getSuccessTemplate(response) {
+			return ('<table>' +
+				'<tr>' +
+				'<th>IP Address</th>' +
+				'<th>Country Code</th>' +
+				'<th>Country</th>' +
+				'<th>City</th>' +
+				'<th>Latitude</th>' +
+				'<th>Longitude</th>' +
+				'<th>Mystery Value</th>' +
+				'</tr>' +
+				'<tr>' +
+				'<td>' + response.ip_address + '</td>' +
+				'<td>' + response.country_code + '</td>' +
+				'<td>' + response.country + '</td>' +
+				'<td>' + response.city + '</td>' +
+				'<td>' + response.latitude + '</td>' +
+				'<td>' + response.longitude + '</td>' +
+				'<td>' + response.mystery_value + '</td>' +
+				'</tr>' +
+				'</table>');
+		}
+
+		function loadDoc() {
+
+			console.log("value: " + document.getElementById("ipAddress").value);
+			if(document.getElementById("ipAddress").value.trim().length  > 0)
+			{
+				var xhttp = new XMLHttpRequest();
+				xhttp.responseType = 'json';
+				xhttp.addEventListener('load', () => {
+					console.log(xhttp.response);
+					if (xhttp.status == 200 && xhttp.response.response != null) {
+						document.getElementById("content").innerHTML = getSuccessTemplate(xhttp.response.response);
+					} else if (xhttp.status == 200 && xhttp.response.response == null) {
+						document.getElementById("content").innerHTML =
+							'<h3 style="margin-left:450px;margin-top:75px;"> IP Address not found </h3>';
+					/*} else if (xhttp.status == 400) {
+						document.getElementById("content").innerHTML =
+							'<h3 style="margin-top:75px;margin-left:450px;">IP Address is Mandatory</h3>';*/
+					} else {
+						document.getElementById("content").innerHTML =
+							'<h3 style="margin-left:410px;margin-top:75px;"> Internal Server Error,Please Try Again </h3>';
+					}
+				});
+
+				xhttp.open("GET", "/api/getIPDetails?ip=" + document.getElementById("ipAddress").value, true);
+				xhttp.send();
+			}else
+			{
+				document.getElementById("content").innerHTML =
+							'<h3 style="margin-top:75px;margin-left:450px;">IP Address is Mandatory</h3>';
+			}
+			
+		}
+	</script>
+
+
+</body>
