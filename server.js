@@ -35,7 +35,8 @@ if (env === "prd") {
 } else { //loc
 	app.listen(8083);
 	console.log('Listening on port 8083');
-
+    
+    //Invoke the library to import the csv file on start of the server.
 	csvImporter.importData(config.dbConfig[env], "./SourceData/4rows.csv", function (err, result) {
 		if (err) {
 			console.log("Error uploading file: " + "err: " + err + "result: " + JSON.stringify(result));
@@ -44,9 +45,9 @@ if (env === "prd") {
 			console.log("File uploaded successfully");
 			console.log('uploaded data statistics: ' + JSON.stringify(result.statistics));
 
-			log.logger_helpers.info(TAG + 'Successfully fetched IP Details');
-			log.logger_helpers.info(TAG + 'uploaded data statistics: ' + JSON.stringify(result.statistics));
-			log.logger_upload.error(TAG + 'Errors in uploaded data: ' + JSON.stringify(result.errors));
+			log.logger_helpers.info(TAG + 'Successfully processed csv file');
+			log.logger_helpers.info(TAG + 'csv Import data statistics: ' + JSON.stringify(result.statistics));
+			log.logger_upload.error(TAG + 'Errors in csv import, data: ' + JSON.stringify(result.errors));
 		}
 	});
 }

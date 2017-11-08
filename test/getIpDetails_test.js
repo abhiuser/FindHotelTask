@@ -1,11 +1,11 @@
 'use strict';
-
+//Unit Testing for getIPDetails API endpoint.
 const chai = require('chai');
 const expect = require('chai').expect;
 
 chai.use(require('chai-http'));
 
-const app = require('../server.js'); // Our app
+const app = require('../server.js');
 
 describe('API endpoint /getIPDetails', function () {
     this.timeout(5000); // How long to wait for a response (ms)
