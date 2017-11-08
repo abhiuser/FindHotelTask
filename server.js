@@ -11,15 +11,7 @@ var log = require('./Environment/log4js.js');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(connect.urlencoded());
-
-/*app.use(bodyParser.json({
-	limit: '5mb'
-}));
-app.use(bodyParser.urlencoded({
-	limit: '20mb',
-	extended: true
-}));*/
+app.use(bodyParser.urlencoded());
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", req.headers.origin);
