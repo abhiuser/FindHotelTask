@@ -10,16 +10,17 @@ var env = require('./Environment/env.js').env;
 var log = require('./Environment/log4js.js');
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json({
+app.use(bodyParser.json());
+app.use(connect.urlencoded());
+
+/*app.use(bodyParser.json({
 	limit: '5mb'
 }));
 app.use(bodyParser.urlencoded({
 	limit: '20mb',
 	extended: true
-}));
+}));*/
 
-
-//CORS issue in the Browser.
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", req.headers.origin);
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");

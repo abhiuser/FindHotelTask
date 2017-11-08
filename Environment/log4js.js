@@ -3,10 +3,10 @@ var log4js = require('log4js');
 var env = require('./env.js').env;
 var fs = require('fs');
 
-
 var logger_helpers;
 var logger_upload;
 
+// Set log4js configuration based on the environment.
 var log4jsEnv = {
     "prd": {
         "logDir": "./NodeJslogs",
@@ -36,7 +36,6 @@ var backups = log4jsEnvParams.backups;
 var logLevel = log4jsEnvParams.logLevel;
 
 var log4jsConfig = {
-
     "appenders": [{
             "type": "file",
             "filename": logDir + "/" + "uploadErrors.log",

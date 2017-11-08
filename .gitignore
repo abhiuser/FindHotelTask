@@ -3,5 +3,4 @@ node_modules/*
 data/*
 public/js/lib/*
 .DS_Store
-SourceData
 NodeJslogs/*

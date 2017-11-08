@@ -7,6 +7,6 @@ var getIPDetails = require('./getIPDetails').getIPDetails;
 //Routing
 app.get('/getIPDetails', getIPDetails);
 
-app.get('/displayForm', displayForm);// to display initial landing page.
+app.get('/displayForm', displayForm);// to display HTML page.
 
 module.exports = app;

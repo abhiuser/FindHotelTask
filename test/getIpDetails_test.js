@@ -35,7 +35,6 @@ describe('API endpoint /getIPDetails', function () {
         return chai.request(app)
             .get('/api/getIPDetails?ip=200.106.141.15')
             .then(function (res) {
-                // console.log(res.body);
                 expect(res).to.have.status(200);
                 expect(res).to.be.json;
                 expect(res.body).to.be.an('object');
@@ -62,8 +61,6 @@ describe('API endpoint /getIPDetails', function () {
         return chai.request(app)
             .get('/api/getIPDetails?ip=200.106.141')
             .then(function (res) {
-                console.log("rohit");
-                console.log("data: "+ JSON.stringify(res.body));
                 expect(res).to.have.status(200);
                 expect(res).to.be.json;
                 expect(res.body).to.be.an('object');
