@@ -1,4 +1,3 @@
-# FindHotel Coding Challenge
 
 ## Geolocation Service
 
@@ -15,10 +14,10 @@ ip_address,country_code,country,city,latitude,longitude,mystery_value
 ```
 
 ### Requirements
-1. Develop a library with two main features:
+1. To Develop a library with two main features:
     * a service that parses the CSV file containing the raw data and persists it in a database;
     * an interface to provide access to the geolocation data (model layer);
-1. Develop a REST API that uses the aforementioned gem to expose the geolocation data
+1. To Develop a REST API that uses the aforementioned gem to expose the geolocation data
 
 In doing so:
 * define a data format suitable for the data contained in the CSV file;
